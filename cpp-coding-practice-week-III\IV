@@ -1,0 +1,1033 @@
+//2.1,2.2,2.3.1
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main()
+{
+	//基本数据类型
+	char a, b, c; //字符型、整型(源码/补码形式表示）* 定义标识符时不需要单引号
+	int d, e, f, n, o, p, q, s, r; //整型、整型(源码/补码形式表示）
+	float g, h, i ; //实型、浮点型（浮点形式表示）
+	double j, k, l; //双精度实型、浮点型（浮点型时表示）
+	bool m; //逻辑型、整型(源码/补码形式表示）
+	//全部整型数据类型
+	char A, B, C;
+	unsigned char D, E, F;
+	short G, H, I;
+	unsigned short J, K, L;
+	int M, N, O;
+	unsigned P, Q, R;
+	long S, T, U;
+	unsigned long V, W, X;
+	//常量
+	//1.整型常量
+	d = 123;
+	e = -016;
+	f = 0xAB;
+	n = 0XCd;
+	o = 12L;
+	p = 15l;
+	q = 12U;
+	r = 15u;
+	int t = 1;
+	cout << typeid(t).name() << '\n';
+	cout << d << '\n' << e << '\n' << f << '\n' << n << '\n' << o << '\n' << p << '\n' << q << '\n' << r << '\n';
+
+	//逻辑型常量
+	m = true;
+	cout << m << '\n'; //返回1
+	m = false;
+	cout << m << '\n'; //返回0
+
+	//实型常量
+	g = 2.3333333e6; //输出:2.33333e+06
+	h = .333333; //输出：0.333333
+	i = 2.; //输出：2
+	j = 1e3; // 输出：1000 e6开始变成e+6，6之前变成非科学计数法形式 e-5开始变成e-5，-5之前变成非科学计数法形式
+	k = 2.33e6; //输出：2.33e+06
+	l = 2.33e-6f;//输出：2.33e-06
+	cout << typeid(k).name() << '\n';
+	cout << typeid(l).name() << '\n'; //定义为double， 赋值有f； 还是double
+	cout << g << '\n' << h << '\n' << i << '\n' << j << '\n' << k << '\n' << l << '\n';
+
+	//字符型常量
+	a = 'a';
+	b = '?';
+	c = '#';
+	cout << '\a';
+	cout << "Bonjour!" << '\b'; 
+	cout << "Bonjour!" << '\f'; //打印机→换页开始打
+	cout << "Bonjour!" << '\r'; 
+	int xi, yi;
+	cout << "input a number: " << '\r';
+	cin >> xi;
+	cout << "input one more number: " << '\r';
+	cin >> yi;
+	cout << '\t'; 
+	cout << '\v'; //打印机→换行，并在换行位置一列的下一列输出
+	/*
+	"abc\vde"
+	→
+	abc
+	   de
+	*/
+	cout << '\\';
+	cout << "\'";
+	cout << "\"";
+	cout << "wwwwww \12" << "wwwww \xa" << "wwwww \XA ";//X此处大写可以？不可。 此处12可写成012
+	cout << '\0';
+
+
+
+
+
+}
+
+//2.3.2
+#include"pch.h"
+#include <iostream>
+using namespace std;
+#define PI 3.14159 // put a # before define
+int main()
+{
+	float r, c, a, sa;
+	r = 5; //r 定義為浮點型，即使輸入為5也是浮點型，加l、u在後面也是浮點型
+	c = 2 * PI * r;
+	a = PI * r * r;
+	sa = 4 * PI * r * r;
+	cout << "r = " << r << '\n';
+	cout << "c = " << c << '\n';
+	cout << "a = " << a << '\n';
+	cout << "sa = " << sa << '\n';
+	cout << typeid(r).name();
+}
+
+//2.3.3
+#include"pch.h"
+#include <iostream>
+using namespace std;
+
+int func() //此函數不是main（） or main（數據類型 a）類型 需要返回值
+{
+	int a = 0; int b = 1;
+	cout << a << '\n' << b << '\n';
+	return 0;  //！！！
+}
+
+int main()
+{
+	// 賦值語句賦初值
+	int a, b; 
+	a = 12; b = -24; // = 在此處為賦值運算符,"；"表示一個語句結束
+	char c1, c2;
+	c1 = 'A'; c2 = 'B'; //輸出無單引號
+	cout << a << '\n' << b << '\n' << c1 << '\n' << c2 << '\n';
+	cout << typeid(a).name() << '\n' << typeid(b).name() << '\n' << typeid(c1).name() << '\n' << typeid(c2).name() << '\n';
+
+	// 變量初始化
+	/*
+	在同一個函數中相同標識符的變量只能被定義一次。因此在此處int  = 12; int b = -24; char c1 = 'A'; char c2 = 'B'錯誤
+	而不同的函數可以出現一樣標識符的變量
+	*/
+	int c = 12; int d = -24; char ca = 'A'; char cb = 'B';
+	cout << c << '\n' << d << '\n' << ca << '\n' << cb << '\n';
+	func(); //調用func。c++從main函數開始運行而不是從頭到尾。在main函數之前的函數若想被運行需要在main函數中被提到
+
+	//常變量
+	const int x = 1; //常量變量需要初始化
+	cout << x << '\n';
+	/*
+	常變量的標識符在一個函數里只能被賦值一次
+	即
+	在上面語句之後輸入
+	
+	x = 2;
+	cout << x << '\n';
+	
+	則無法運行
+	*/
+	cout << typeid(x).name();
+	
+}
+
+//exercise i
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	char a1, a2, a3;
+	int b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;
+	float c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12;
+	double d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11;
+	bool e1, e2;
+
+	char A1, A2, A3;
+	unsigned char B1, B2, B3;
+	short C1, C2, C3;
+	unsigned short D1, D2, D3;
+	int E1, E2, E3;
+	unsigned int F1, F2, F3;
+	long G1, G2, G3;
+	unsigned long H1, H2, H3;
+
+	b1 = 233;
+	b2 = -666;
+	b3 = 012;
+	b4 = -071;
+	b5 = 0x3A;
+	b6 = 0XCa;
+	b7 = 333l;
+	b8 = 222L;
+	G1 = 333l;
+	G2 = 222L;
+	b9 = 666u;
+	b10 = 333U;
+	D1 = 666u;
+	F1 = 333U;
+	int b11 = 233;
+	cout << typeid(b11).name() << '\n';
+	cout << typeid(b7).name() << '\n'; //定义为int 数字后加l也为int
+	cout << typeid(b9).name() << '\n'; //定义为int 数字后加u也为int
+	cout << typeid(G1).name() << '\n'; //定义为long 用typeid(G1).name()显示为long，下同
+	cout << typeid(G2).name() << '\n'; 
+	cout << typeid(D1).name() << '\n'; //定义为unsigned short，用typeid(D1).name()显示为unsigned short
+	cout << typeid(F1).name() << '\n'; //定义为unsigned 用typeid(F1).name()显示为unsigned int
+	cout << b1 << '\n';
+	cout << b2 << '\n';
+	cout << b3 << '\n';
+	cout << b4 << '\n';
+	cout << b5 << '\n';
+	cout << b6 << '\n';
+	cout << b8 << '\n';
+	cout << "__________________________________________________________" << '\n';
+
+	e1 = true;
+	cout << e1 << '\n';
+	e2 = false;
+	cout << e2 << '\n';
+	cout << "__________________________________________________________" << '\n';
+
+	c1 = 2.333333333333333333333333e6; //默认6位有效数字
+	c2 = 2.333333333333333333333333e5;
+	c3 = 2.333333333333333333333333e-4;
+	c4 = 2.333333333333333333333333e-5;
+	c5 = 2.333333333333333333333333e+6;
+	c6 = 2.333333333333333333333333e+06;
+	c7 = .233333;
+	c8 = 233333.;
+	c9 = 2.33333;
+	c10 = 1e308; //输出结果为inf，即数据溢出
+	c11 = 6;
+	c12 = 6.0;
+
+	d1 = 2.333333333333333333333333e6; //默认6位有效数字
+	d2 = 2.333333333333333333333333e5;
+	d3 = 2.333333333333333333333333e-4;
+	d4 = 2.333333333333333333333333e-5;
+	d5 = 2.333333333333333333333333e+6;
+	d6 = 2.333333333333333333333333e+06;
+	d7 = .233333;
+	d8 = 233333.;
+	d9 = 2.33333;
+	d10 = 1e308;
+	d11 = 2.33333f;
+
+	cout << typeid(c9).name() << '\n';
+	cout << typeid(d9).name() << '\n';
+	cout << typeid(d11).name() << '\n';
+	cout << typeid(c11).name() << '\n';
+	cout << typeid(c12).name() << '\n';
+	cout << "__________________________________________________________" << '\n';
+	cout << c1 << '\n';
+	cout << c2 << '\n';
+	cout << c3 << '\n';
+	cout << c4 << '\n';
+	cout << c5 << '\n';
+	cout << c6 << '\n';
+	cout << c7 << '\n';
+	cout << c8 << '\n';
+	cout << c9 << '\n';
+	cout << c10 << '\n';
+	cout << "__________________________________________________________" << '\n';
+	cout << d1 << '\n';
+	cout << d2 << '\n';
+	cout << d3 << '\n';
+	cout << d4 << '\n';
+	cout << d5 << '\n';
+	cout << d6 << '\n';
+	cout << d7 << '\n';
+	cout << d8 << '\n';
+	cout << d9 << '\n';
+	cout << d10 << '\n';
+	cout << d11 << '\n';
+	cout << "__________________________________________________________" << '\n';
+
+	a1 = 'a';
+	a2 = '#';
+	a3 = '?';
+	cout << a1 << '\n';
+	cout << a2 << '\n';
+	cout << a3 << '\n';
+	cout << "__________________________________________________________" << '\n';
+
+	cout << '\a';
+	cout << "__________________________________________________________" << '\n';
+	cout << "Hello!!!!!\b\b>w<\n";
+	cout << "__________________________________________________________" << '\n';
+	cout << "Hello!!!!!\r >w< \n";
+	cout << "__________________________________________________________" << '\n';
+	cout << "Hello!!!!!\b\b>w<\r";
+	cout << " >w< ";
+	cout << "__________________________________________________________" << '\n'; 
+	/*
+	上面三行：
+	
+	cout << "Hello!!!!!\b\b>w<\r";
+	↓
+	Hello!!!>w<→光标到H处
+	↓
+	cout << " >w< ";
+	↓
+	>w< !!!>w<→光标到第一个！处！！！！！！！！！！！！！！！！！！
+	↓
+	cout << "__________________________________________________________" << '\n';
+	↓
+	>w< __________________________________________________________
+	↓
+	换行
+	*/
+	cout << "Hello!!!!!\b\b>w<\r";
+	cout << " >w< \n"; //即使输入 >w< 后光标在第一个感叹号处，但\n使光标跳到下一行，而这不会使光标后面的内容一起换行。
+	cout << "__________________________________________________________" << '\n';
+
+	cout << "\tw" << '\n';
+	cout << "1234567\tw" << '\n';
+	cout << "12345678\tw" << '\n';
+	cout << "\t\tw" << '\n';
+	cout << "123456789\tw" << '\n';
+	cout << "\t\t\tw" << '\n';
+	cout << "123456789\t\tw" << '\n';
+	cout << "__________________________________________________________" << '\n';
+	cout << '\\' << '\n';
+	cout << "__________________________________________________________" << '\n';
+	cout << '\'' << '\n';
+	cout << "__________________________________________________________" << '\n';
+	cout << "\"" << '\n';
+	cout << "__________________________________________________________" << '\n';
+	cout << "www\12"; //此处可写成012
+	cout << "www\xA";
+	cout << "www\xa"; //此处x不能大写！！！！！！！！！！！
+	cout << "__________________________________________________________" << '\n';
+	cout << "\101\12";
+	cout << "\x41\xa";
+	cout << "\0 12";
+	cout << "\0abc";
+	cout << "abcde\0abcde";
+	/*
+	上面三行： \0代表字符串结束，后面的字符串会被忽略，且被忽略的字符串不会变成空格。同时，\012会相当于\12即\n。
+	上面三行输出结果：
+	abcde
+	*/
+	return 0;
+}
+
+//exercise ii
+#include"pch.h"
+#include <iostream>
+using namespace std;
+#define PI 3.14159
+int main(void)
+{
+	float r, c, s, s1, v;
+	cout << "input the r:\n";
+	cin >> r;
+	c = 2 * PI * r;
+	s = PI * r * r;
+	s1 = 4 * PI * r * r;
+	v = 4 / 3 * PI * r * r * r;
+	cout << "r = " << r << '\n';
+	cout << "c = " << c << '\n';
+	cout << "s = " << s << '\n';
+	cout << "s1 = " << s1 << '\n';
+	cout << "v = " << v << '\n';
+	cout << typeid(r).name();
+
+}
+
+//exercise iii
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int func(void)
+{
+	int a = 0; int b = 1;
+	cout << a << '\n' << b << '\n';
+	return 0;
+}
+
+int main(void)
+{
+
+		int a, b;
+		a = 12; b = -24;
+		char c1, c2;
+		c1 = 'A'; c2 = 'B';
+		cout << a << '\n' << b << '\n' << c1 << '\n' << c2 << '\n';
+
+		int c = 12; int d = -24;
+		char ca = 'A'; char cb = 'B';
+		cout << c << '\n' << d << '\n' << ca << '\n' << cb << '\n';
+		func();
+
+		const int x = 1;
+		cout << x << '\n';
+		cout << typeid(x).name();
+		return 0;
+}
+
+//experiment I-assignments
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main() //int main(void) can also be written as int main(), that is, void can be omitted
+{
+	int a, b, c;
+	cout << "input data: \n";
+	/*
+	variable-assignments can be done at the same time
+	in this way, the first data input is assigned to the first variable
+	and the second assigned to the second
+	*/
+	cin >> a >> b;
+	cout << a << '\n';
+	cout << b << '\n';
+	c = a + b;
+	cout << "a + b is " << c << '\n';
+	//return 0 can be omitted here?
+}
+
+//experiment III-outputs、references ＆the main function
+#include"pch.h"
+#include <iostream>
+using namespace std;
+
+int func1(int x)
+{
+	int y;
+	y = 2 * x;
+	return y;
+}
+
+int main()
+{
+	cout << func1(6);
+	return 0;
+}
+
+/*
+i)
+int main(int x)
+{
+	int y;
+	y = 2 * x;
+	return y;
+}
+
+cout << main(6);
+
+ii)
+int func1(int x)
+{
+	int y;
+	y = 2 * x;
+	return y;
+}
+cout << func1(6);
+
+the cout statements here are illegal
+they must be put in a main function to be referred to
+*/
+
+/*
+i)
+int main(int x)
+{
+	int y;
+	y = 2 * x;
+	cout << main(6);
+	return y;
+}
+
+ii)
+int func1(int x)
+{
+	int y;
+	y = 2 * x;
+	cout << func1(6);
+	return y;
+}
+
+in this way, main(6) and func1(6) can not be printed out 
+that is, a function can not be referred to in itself
+
+*/
+
+/*
+int main(int x)
+{
+	int y;
+	y = 2 * x;
+	return y;
+}
+
+int func1()
+{
+	cout << main(6);
+	return 0;
+}
+
+this doesn't give any result, as code in cpp is run from the start and to the end of a main function
+
+*/
+
+/*
+int func1(int x)
+{
+	int y;
+	y = 2 * x;
+	return y;
+}
+
+int main()
+{
+	cout << func1(6);
+	return 0;
+}
+
+this is correct
+
+*/
+
+//experiment II-returns
+#include"pch.h"
+#include <iostream>
+using namespace std;
+
+//there must be and only be a main function in cpp's code
+// "//"can be used in a line without any statement
+
+int main(int x) //this function is named main and has one value
+{
+	int y;
+	y = x * x;
+}
+
+/*
+int main() //this function is named main and has no value
+{
+	int x, y;
+	cout << "input a number: \n";
+	cin >> x;
+	y = x * x;
+}
+
+this function can be executed
+
+*/
+
+int func1() //this function is named func1 and has no parameter
+{
+	int x, y;
+	cout << "input a number: \n";
+	cin >> x;
+	y = x * x;
+	return y; //this function must return at least one value
+}
+
+int func2(int x) //this function is named func2 and has a parameter x
+{
+	int y;
+	y = x * x;
+	return y; //this function must return at least one value
+}
+
+/*
+CONCLUSION:
+if a function is a main function, either main() or main(int a) need not return any value
+but if a function is named other ways, either func() or func(int a) must return at least one value 
+*/
+
+
+
+//experiment IV-iostream
+#include"pch.h"
+#include"iostream" //<iostream> can also be written as "iostream"
+using namespace std;
+int main()
+{
+	cout << ">w<";
+}
+
+//experiment VII-cout输出定义的函数
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int func1(void)
+{
+	cout << ">w<\n";
+	return 0;
+}
+
+void func2(void)
+{
+	cout << ">w<\n";
+}
+
+int main(void)
+{
+	func1();
+	func2();
+	cout << func1();
+	/*
+	上一行输出结果：
+	>w<
+	0
+	
+	且cout << func2();
+	是非法的
+	因此，用cout输出函数值，此函数必须有一个非空返回值。
+	*/
+	return 0;
+}
+
+//experiment VI-转义字符
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	// \b 作用： 退格，若后面再输入信息，则覆盖在退格处
+	cout << "Guangzhow" << '\b';
+	cout << "u\n";
+	//以上两句输出Guangzhou
+	cout << "12345\b\babcde";
+	cout << "09876\b\b\babcde";
+	//以上两句输出123abcde09abcde
+
+	// \r 作用：回到行首，相当于连续退格
+	cout << "ABCDEFG\r";
+	cout << ">w<";
+	//以上输出>w<abcde09abcdeABCDEFG **注意 回到 行首 上面123abcde09abcde没换行。相当于123abcde09abcde和ABCDEFG拼起来，光标到行首，用>w<覆盖相应文字
+	cout << "\n12345\b\babcde";
+	cout << "09876\b\b\babcde\n";
+	cout << "ABCDEFG\r";
+	cout << ">w<\n";
+	//输出123abcde09abcde;>w<DEFG
+	cout << "Hello!!!!!\b\b>w<\r";
+	cout << " >w< ";
+	cout << "__________________________________________________________" << '\n';
+	/*
+	上面三行：
+
+	cout << "Hello!!!!!\b\b>w<\r";
+	↓
+	Hello!!!>w<→光标到H处
+	↓
+	cout << " >w< ";
+	↓
+	>w< !!!>w<→光标到第一个！处！！！！！！！！！！！！！！！！！！
+	↓
+	cout << "__________________________________________________________" << '\n';
+	↓
+	>w< __________________________________________________________
+	↓
+	换行
+	*/
+	cout << "Hello!!!!!\b\b>w<\r";
+	cout << " >w< \n"; //即使输入 >w< 后光标在第一个感叹号处，但\n使光标跳到下一行，而这不会使光标后面的内容一起换行。
+	cout << "__________________________________________________________" << '\n';
+
+	//一个制表符占8个字节，制表符开始的地方为8*n字节处，制表符会补充空格
+	cout << "\tx" << '\n';
+	cout << "123\tx" << '\n';
+	cout << "1234567\tx" << '\n';
+	cout << "12345678\tx" << '\n';
+	cout << "\t12345678" << '\n';
+	cout << "\t\tx" << '\n';
+	cout << "123456789\t\tx" << '\n';
+	/*
+	输出为
+	
+	        x //制表符开始处为第0字节，且从开始处开始有0字节的字符，有1个\t，补充8字节空格 *位置从0开始算
+	123     x //制表符开始处为第0字节，且从开始处开始有3字节的字符，有1个\t，补充8-3=5字节空格
+	1234567 x //制表符开始处为第0字节，且从开始处开始有7字节的字符，有1个\t，补充8-7=1字节空格
+	12345678        x //此行开始有8个字符的字节，制表符开始处为第8字节，且从开始处有0字节的字符，有1个\t，补充8字节空格
+			12345678 //制表符开始处为第0字节，且从开始处开始有0字节的字符，有1个\t，补充8字节空格
+		            x //制表符开始处为第0字节，且从开始处开始有0字节的字符，有两2个\t，补充8*2=16字节空格
+	123456789               x //此行开始有8个字符的字节，制表符开始处为第8字节，且从开始处有1字节的字符，有2个\t，补充8*2-1=15字节空格
+     */
+	return 0;
+}
+
+//experiment V-sounds
+#include"pch.h"
+#include <iostream>
+#include<windows.h>
+using namespace std;
+int main()
+{
+	cout << '\a';
+	Sleep(300); //windows.h
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+	Sleep(300);
+	cout << '\a';
+}
+
+//第三周作业 实验1
+#include"pch.h"
+#include <iostream>
+using namespace std;
+void main()
+{
+	cout << "Welcome to Guangzhou university of Foreign Studies .\n";
+}
+
+//第三周作业 实验2
+#include"pch.h"
+#include <iostream>
+using namespace std;
+void main()
+{
+	cout << "**********************************************\n";
+	cout << "*    欢迎使用学生成绩管理系统1.0             *\n";
+	cout << "*       王小明   计算机1703班 2017.9.11      *\n";
+	cout << "*     1、输入成绩                            *\n";
+	cout << "*     2、查询程序                            *\n";
+	cout << "*     3、求平均分；                          *\n";
+	cout << "*     4、退出                                *\n";
+	cout << "*   请输入(1-4)选择：                        *\n";
+	cout << "*                                            *\n";
+	cout << "**********************************************\n";
+
+}
+
+//第三周作业 实验3
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a, b, c;
+	cin >> a >> b;
+	c = a + b;
+	cout << c; //不能用return c代替
+	return 0;
+}
+
+//第三周作业 实验三-思考1)
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a, b, c;
+	cout << "input two numbers:\n";
+	cin >> a >> b;
+	c = a + b;
+	cout << c; 
+	return 0;
+}
+
+//第三周作业 实验三-思考2)
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a, b, c;
+	cout << "input two numbers:\n";
+	cin >> a >> b;
+	c = a * b;
+	cout << c;
+	return 0;
+}
+
+//第三周作业 实验三-思考3）
+#include"pch.h"
+#include <iostream>
+#include<stdlib.h> //此文件中含有rand函数的定义
+using namespace std;
+
+/*
+由于没学相关内容，自动出题所需的随机数只能通过rand()函数和定义多个变量，多次输出产生，这里的随机数并非真正的随机数
+*/
+int main(void)
+{
+	int a = rand(); //用rand函数产生随机数
+	int b = rand();
+
+	int c = rand();
+	int d = rand();
+
+	int e = rand();
+	int f = rand();
+
+	int g = rand();
+	int h = rand();
+
+	int i = rand();
+	int j = rand();
+
+	int k = rand();
+	int l = rand();
+
+	int m = rand();
+	int n = rand();
+
+	int o = rand();
+	int p = rand();
+
+	int q = rand();
+	int r = rand();
+
+	int s = rand();
+	int t = rand();
+
+	int u = rand();
+	int v = rand();
+
+	int w = rand();
+	int x = rand();
+
+	int y = rand();
+	int z = rand();
+
+	cout << a << " + " << b << " =\n";
+	cout << c << " + " << d << " =\n";
+	cout << e << " + " << f << " =\n";
+	cout << g << " + " << h << " =\n";
+	cout << i << " + " << j << " =\n";
+	cout << k << " + " << l << " =\n";
+	cout << m << " + " << n << " =\n";
+	cout << o << " + " << p << " =\n";
+	cout << q << " + " << r << " =\n";
+	cout << s << " + " << t << " =\n";
+	cout << u << " + " << v << " =\n";
+	cout << w << " + " << x << " =\n";
+	cout << y << " + " << z << " =\n";
+	return 0;
+}
+
+//第三周作业 实验三-思考4)
+#include"pch.h"
+#include <iostream>
+using namespace std;
+
+void addition(void) // 第一个void表示不返回任何值给main函数，可用于只需要main函数调用前面定义了的函数的情况
+{
+	int a, b;
+	cout << "input two numbers to add up:\n";
+	cin >> a >> b;
+	int c;
+	c = a + b;
+	cout << a << " and " << b << " equals " << c << '\n';
+}
+
+void subtraction(void)
+{
+	int a, b;
+	cout << "the minuend is:\n";
+	cin >> a;
+	cout << "the subtrahend is:\n";
+	cin >> b;
+	int c;
+	c = a - b;
+	cout << b << " from " << a << " equals " << c << '\n';
+}
+
+void multiplication(void)
+{
+	int a, b;
+	cout << "input two numbers to multiply together:\n";
+	cin >> a >> b;
+	int c;
+	c = a * b;
+	cout << a << " times " << b << " equals " << c << '\n';
+}
+
+/*
+除法运算的得数可能会是小数，因此定义被除数、除数和得数的标识符时应使用float或double。
+不能只在定义结果的标识符时用float而被除数、除数用int，否则得到的输出结果和三个量都为整型时的结果相同，即得数被截尾。
+*/
+void division(void) 
+{
+	float a, b;
+	cout << "the dividend is:\n";
+	cin >> a;
+	cout << "the divisor is:\n";
+	cin >> b;
+	float c;
+	c = a / b; // 除以 是'/" 不是 "\"
+	cout << a << " divided by " << b << " equals " << c;
+}
+
+int main(void)
+{
+	addition();
+	subtraction();
+	multiplication();
+	division();
+	return 0;
+}
+
+/*
+第三周作业 实验三 结论
+
+错误i:
+代码写完后ctrl+F5运行程序，未在命令行窗口输入数据也未关闭命令窗口而修改了代码。当再次ctrl+F5后，虽然代码也能运行，但会有 无法打开 C:\Users\Neko\Desktop\第三周作业 实验三\Debug\第三周作业 实验三.exe 进行写入 的错误提醒。
+结论i:ctrl+F5运行含有输入数据步骤的代码后未在命令行窗口输入数据且没关闭命令行窗口，在修改代码后再次运行，会在运行代码时发生错误提醒，即使忽略提醒也能正常执行。因此若ctrl+F5运行代码使命令行窗口出现但未输入数据而修改代码，应该先关闭未输入数据的命令行窗口后运行修改后的代码，才能不引发错误提醒。
+---------------------------------------------------------------------
+错误ii:
+代码写完后ctrl+F5运行程序，未在命令行窗口输入数据也未关闭命令窗口。当再次ctrl+F5后，若在第二次打开的窗口中输入数据后<enter>，命令行窗口会立即退出。
+结论ii: ctrl+F5运行含有输入数据步骤的代码后未在命令行窗口输入数据且没关闭命令行窗口， 若再次ctrl+F5，即使在第二个出现的命令行中输入数据也不能正常显示结果。因此ctrl+F5运行含有输入数据步骤的代码后应该输入数据运行后关闭或直接关闭才能在ctrl+F5再次运行程序。
+---------------------------------------------------------------------
+错误iii:
+定义被除数、除数和得数为整形，得到运算结果不正确。
+结论：除法运算的得数可能会是小数，因此定义被除数、除数和得数的标识符时应使用float或double。不能只在定义结果的标识符时用float而被除数、除数用int，否则得到的输出结果和三个量都为整型时的结果相同，即得数被截尾。
+---------------------------------------------------------------------
+i.数据测试（参考程序）的cout << c不能用return c代替。前者表示输出c的值到屏幕上，后者表示返回c的值。而在主函数中，返回c的值无意义。主函数返回值若为0，表示正常退出，若返回其他值，表示程序运行不正常。
+---------------------------------------------------------------------
+ii.可用cout语句将两数的和输出，也可将两数的和赋值给一个定义了的同数据类型变量，用cout语句输出这个变量的值。
+---------------------------------------------------------------------
+v：void func（void） 第一个void表示定义的该函数不返回任何值（给main函数），这可用于只需要main函数执行在前面已经定义了的函数而不使用函数值的情况。若定义的函数（假设为func）返回值类型为void，则cout << func(); 是非法的。主函数中cout << func(); 的func一定要有非空返回值。
+*/
+
+//随机数输出
+#include"pch.h"
+#include <iostream>
+#include "stdlib.h"
+using namespace std;
+int main()
+{
+	int a = rand(); int b = rand();
+	cout << a << '\n' << b << '\n';
+	int c = rand(); int d = rand();
+	cout << c << '\n' << d << '\n';
+}
